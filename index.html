@@ -173,6 +173,17 @@
   footer{background:var(--night);color:#a9a5dc;font-size:.95rem;padding:0 0 40px}
   footer .wrap{border-top:1px solid rgba(255,255,255,.18);padding-top:22px}
 
+  .toast{
+    position:fixed;left:50%;bottom:24px;z-index:50;
+    transform:translate(-50%,20px);opacity:0;pointer-events:none;
+    width:min(92vw,420px);padding:14px 18px;border-radius:14px;
+    background:var(--yellow);color:var(--night);border:3px solid var(--night);
+    box-shadow:5px 5px 0 var(--night);font-weight:600;font-size:1rem;line-height:1.35;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .toast small{display:block;font-weight:400;margin-top:4px}
+
   @media (max-width:860px){
     .hero-body .wrap{grid-template-columns:1fr;gap:56px}
     .grid{grid-template-columns:1fr}
@@ -357,6 +368,8 @@
   </div>
 </footer>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
   /* ============ EDITÁ ESTOS DATOS ============ */
   var CONFIG = {
@@ -391,6 +404,46 @@
     a.rel = "noopener";
     a.textContent = "@" + CONFIG.instagram;
   });
+
+  /* Mensaje automático: se copia al tocar el botón y se abre Instagram */
+  (function(){
+    var toast = document.getElementById("toast");
+    var timer;
+
+    function showToast(){
+      toast.innerHTML = "Mensaje copiado.<small>Pegalo en el chat de Instagram y envialo.</small>";
+      toast.classList.add("show");
+      clearTimeout(timer);
+      timer = setTimeout(function(){ toast.classList.remove("show"); }, 5000);
+    }
+
+    function copyText(text){
+      if (navigator.clipboard && window.isSecureContext){
+        navigator.clipboard.writeText(text).then(showToast, function(){ fallback(text); });
+      } else { fallback(text); }
+    }
+    function fallback(text){
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); showToast(); } catch(e) {}
+      document.body.removeChild(ta);
+    }
+
+    document.querySelectorAll(".js-ig").forEach(function(a){
+      var plan = a.closest(".plan");
+      var msg;
+      if (plan){
+        var nombrePlan = plan.querySelector("h3").textContent.trim().toLowerCase();
+        var etiqueta = nombrePlan === "licencia única" ? "la licencia única" : "el plan " + nombrePlan;
+        msg = "Hola " + CONFIG.nombre + ", vi la página de Control de Stock y me interesa " + etiqueta + ". ¿Me pasás más info?";
+      } else {
+        msg = "Hola " + CONFIG.nombre + ", vi la página de Control de Stock y quiero que me lo muestres.";
+      }
+      a.addEventListener("click", function(){ copyText(msg); });
+    });
+  })();
 
   /* Etiqueta interactiva */
   (function(){
