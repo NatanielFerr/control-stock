@@ -124,6 +124,12 @@
   .shot .frame img{display:block;width:100%;height:auto}
   .shot .frame .empty{padding:48px 24px;text-align:center;max-width:30em;color:var(--soft)}
   .shot .frame .empty strong{color:var(--night)}
+  .shot .frame[hidden]{display:none}
+  .shot .frame a{display:block;width:100%}
+  .gallery{margin-top:38px;display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+  .gallery .frame{margin:0}
+  .gallery .frame:first-child{grid-column:1 / -1}
+  @media (max-width:860px){ .gallery{grid-template-columns:1fr} }
 
   /* Funciones */
   .features{background:var(--lav);padding:92px 0}
@@ -252,9 +258,22 @@
   <section class="shot">
     <div class="wrap">
       <h2>Así se ve por dentro</h2>
-      <div class="frame">
-        <img src="capturas/principal.png" alt="Pantalla principal del programa Control de Stock" onerror="this.remove()">
-        <div class="empty" id="shotEmpty"><strong>Falta tu captura.</strong> Guardá una imagen del programa como <strong>capturas/principal.png</strong> dentro del repositorio y va a aparecer acá sola.</div>
+      <div class="gallery" id="gallery">
+        <figure class="frame">
+          <a href="capturas/principal.png" target="_blank" rel="noopener"><img src="capturas/principal.png" alt="Pantalla principal del programa Control de Stock" onerror="this.closest('figure').remove()"></a>
+        </figure>
+        <figure class="frame">
+          <a href="capturas/captura2.png" target="_blank" rel="noopener"><img src="capturas/captura2.png" alt="Otra pantalla del programa Control de Stock" onerror="this.closest('figure').remove()"></a>
+        </figure>
+        <figure class="frame">
+          <a href="capturas/captura3.png" target="_blank" rel="noopener"><img src="capturas/captura3.png" alt="Otra pantalla del programa Control de Stock" onerror="this.closest('figure').remove()"></a>
+        </figure>
+        <figure class="frame">
+          <a href="capturas/captura4.png" target="_blank" rel="noopener"><img src="capturas/captura4.png" alt="Otra pantalla del programa Control de Stock" onerror="this.closest('figure').remove()"></a>
+        </figure>
+      </div>
+      <div class="frame" id="shotEmpty" hidden>
+        <div class="empty"><strong>Faltan tus capturas.</strong> Guardá imágenes del programa como <strong>capturas/principal.png</strong>, <strong>captura2.png</strong>, <strong>captura3.png</strong> y <strong>captura4.png</strong> dentro del repositorio y van a aparecer acá solas.</div>
       </div>
     </div>
   </section>
@@ -467,15 +486,12 @@
     paint();
   })();
 
-  /* Si la captura existe, ocultar el aviso */
-  (function(){
-    var img = document.querySelector(".shot .frame img");
+  /* Galería: si no se cargó ninguna captura, mostrar el aviso */
+  window.addEventListener("load", function(){
+    var gallery = document.getElementById("gallery");
     var empty = document.getElementById("shotEmpty");
-    if (img) {
-      img.addEventListener("load", function(){ empty.style.display = "none"; });
-      if (img.complete && img.naturalWidth > 0) empty.style.display = "none";
-    }
-  })();
+    if (!gallery.querySelector("figure")) { empty.hidden = false; }
+  });
 </script>
 </body>
 </html>
