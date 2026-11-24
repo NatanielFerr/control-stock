@@ -65,7 +65,9 @@
   .hero-body .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
   .hero h1{font-size:clamp(2.8rem,6.6vw,5.4rem)}
   .hero .lead{margin-top:26px;font-size:1.22rem;max-width:33em;color:#dcd9ff}
-  .hero .actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px}
+  .hero .trial{margin-top:22px;font-size:1.1rem;color:var(--yellow)}
+  .hero .trial b{color:var(--white)}
+  .hero .actions{margin-top:18px;display:flex;flex-wrap:wrap;gap:14px}
   .hero .btn.ghost{background:transparent;color:var(--white);border-color:var(--white);box-shadow:3px 3px 0 var(--white)}
   .hero .btn.ghost:hover{box-shadow:5px 5px 0 var(--white)}
 
@@ -126,6 +128,10 @@
   .shot .frame .empty strong{color:var(--night)}
   .shot .frame[hidden]{display:none}
   .shot .frame a{display:block;width:100%}
+  .video{margin-top:38px;position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:var(--night);border:3px solid var(--night);box-shadow:10px 10px 0 var(--night)}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .video-note{margin-top:20px;font-weight:600}
+  .video-note a{color:var(--night)}
   .gallery{margin-top:38px;display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
   .gallery .frame{margin:0}
   .gallery .frame:first-child{grid-column:1 / -1}
@@ -141,6 +147,13 @@
   }
   .features h3{font-size:1.6rem;letter-spacing:-.015em}
   .features p{color:var(--soft);max-width:36em}
+  .also-title{margin-top:52px;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+  .also{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .also>div{background:var(--white);border:3px solid var(--night);border-radius:16px;padding:20px;box-shadow:5px 5px 0 var(--night)}
+  .also h3{font-size:1.15rem;letter-spacing:-.01em;margin-bottom:8px}
+  .also p{font-size:.95rem;line-height:1.45}
+  @media (max-width:1000px){ .also{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:560px){ .also{grid-template-columns:1fr} }
   .soon{display:inline-block;margin-left:.5em;font-size:.8rem;font-weight:600;background:var(--pink);color:var(--night);padding:.15em .65em;border-radius:999px;border:2px solid var(--night);vertical-align:middle}
 
   /* Planes */
@@ -149,7 +162,7 @@
   .plans .sub{margin-top:14px;max-width:34em;font-size:1.1rem}
   .grid{margin-top:44px;display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:26px;align-items:stretch}
   .plan{background:var(--white);border:3px solid var(--night);border-radius:20px;padding:28px;display:flex;flex-direction:column;box-shadow:7px 7px 0 var(--night)}
-  .plan.main{background:var(--yellow);padding:34px 30px}
+  .plan.main{background:var(--yellow)}
   .plan h3{font-size:1.55rem}
   .plan .amount{font-weight:800;font-size:2.7rem;letter-spacing:-.03em;margin:14px 0 4px;line-height:1.05}
   .plan .amount.ask{font-size:1.5rem;letter-spacing:-.01em}
@@ -163,10 +176,18 @@
   .how{background:var(--yellow);padding:88px 0}
   .how h2{font-size:clamp(2.1rem,4.6vw,3.6rem)}
   .how ol{margin:40px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;counter-reset:paso}
-  .how li{counter-increment:paso;border-top:4px solid var(--night);padding-top:16px}
-  .how li::before{content:counter(paso);display:block;font-weight:800;font-size:3.4rem;line-height:1;color:var(--indigo);margin-bottom:8px}
-  .how h3{font-size:1.35rem;margin-bottom:6px}
-  .how p{color:#3d3500}
+  .how li{counter-increment:paso;border-top:4px solid var(--night);padding-top:20px}
+  .how li::before{content:counter(paso);display:block;font-weight:800;font-size:3.4rem;line-height:1;color:var(--indigo);margin-bottom:16px}
+  .how h3{font-size:1.35rem;margin-bottom:14px}
+  .how p{color:#3d3500;line-height:1.65}
+
+  /* Condiciones */
+  .terms{background:var(--white);padding:84px 0}
+  .terms h2{font-size:clamp(2.1rem,4.6vw,3.6rem);max-width:14em}
+  .terms ul{list-style:none;margin:38px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:22px 40px}
+  .terms li{border-top:4px solid var(--night);padding-top:14px;color:var(--soft)}
+  .terms li strong{display:block;color:var(--night);font-size:1.2rem;margin-bottom:4px}
+  @media (max-width:860px){ .terms ul{grid-template-columns:1fr} }
 
   /* Contacto */
   .contact{background:var(--night);color:var(--white);padding:104px 0 48px}
@@ -211,7 +232,7 @@
   <header class="top">
     <div class="wrap">
       <a class="brand" href="#"><span>Export Shop</span>Control de Stock</a>
-      <a class="btn js-ig" href="#contacto">Escribime</a>
+      <a class="btn js-ig" href="https://www.instagram.com/nata_ferreyra24/">Escribime</a>
     </div>
   </header>
 
@@ -220,9 +241,10 @@
       <div>
         <h1>Dejá el Excel. Llevá tu stock de una.</h1>
         <p class="lead">Soy <span class="js-name">Nataniel</span>. Hice este programa porque cargar productos en Excel me resultaba incómodo y no encontré ninguno que me sirviera. Lo armé para que cualquier negocio chico lo use sin vueltas.</p>
+        <p class="trial">🎁 Probalo <b>7 días sin cargo</b>, sin compromiso de compra.</p>
         <div class="actions">
-          <a class="btn js-ig" href="#contacto">Quiero verlo funcionando</a>
-          <a class="btn ghost" href="#planes">Ver precios</a>
+          <a class="btn js-ig" href="https://www.instagram.com/nata_ferreyra24/">Quiero verlo funcionando</a>
+          <a class="btn ghost" href="#planes">Ver planes</a>
         </div>
       </div>
 
@@ -258,6 +280,10 @@
   <section class="shot">
     <div class="wrap">
       <h2>Así se ve por dentro</h2>
+      <div class="video">
+        <iframe src="https://www.youtube-nocookie.com/embed/s9BotXcaXJg" title="Control de Stock · Export Shop: video completo del programa" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <p class="video-note">Mirá el programa funcionando. <a href="https://youtu.be/s9BotXcaXJg" target="_blank" rel="noopener">Verlo en YouTube</a></p>
       <div class="gallery" id="gallery">
         <figure class="frame">
           <a href="capturas/principal.png" target="_blank" rel="noopener"><img src="capturas/principal.png" alt="Pantalla principal del programa Control de Stock" onerror="this.closest('figure').remove()"></a>
@@ -292,14 +318,29 @@
           <p>Mirá tu stock cuando quieras y date cuenta a tiempo de lo que tenés que reponer.</p>
         </li>
         <li>
-          <h3>Cupones de descuento <span class="soon">Próxima actualización</span></h3>
+          <h3>Cupones de descuento</h3>
           <p>Creá cupones, mirá los que tenés y aplicalos a los productos que quieras.</p>
         </li>
-        <li>
-          <h3>Se instala en tu compu</h3>
-          <p>Es un programa de escritorio. También lo pensé para que ande en notebooks con Windows 8, porque sé que hay muchas todavía.</p>
-        </li>
       </ul>
+      <h3 class="also-title">Y además</h3>
+      <div class="also">
+        <div>
+          <h3>Cuotas y garantías</h3>
+          <p>Seguí pagos y saldos de cada cliente, y cuándo vence cada garantía. Incluye IMEI y combos.</p>
+        </div>
+        <div>
+          <h3>Informes y copias</h3>
+          <p>Armá un PDF con lo que quieras y guardá una copia de tus datos.</p>
+        </div>
+        <div>
+          <h3>Sin internet</h3>
+          <p>Tus datos quedan en tu compu y no se envían a ningún lado.</p>
+        </div>
+        <div>
+          <h3>Se instala en tu compu</h3>
+          <p>Para Windows 10 y 11, y una versión aparte para Windows 8.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -307,7 +348,7 @@
   <section class="plans" id="planes">
     <div class="wrap">
       <h2>Elegí cómo pagarlo</h2>
-      <p class="sub">Un pago y listo, o una cuota chica si preferís. Vos decidís.</p>
+      <p class="sub">Un pago único, o un pago anual o mensual si preferís. Vos decidís.</p>
 
       <div class="grid">
         <article class="plan main">
@@ -318,8 +359,9 @@
             <li>Actualizaciones de por vida</li>
             <li>30 días de soporte</li>
             <li>Te lo dejo instalado y funcionando</li>
+            <li>Probalo 7 días sin cargo</li>
           </ul>
-          <a class="btn pink js-ig" href="#contacto">Quiero este plan</a>
+          <a class="btn pink js-ig" href="https://www.instagram.com/nata_ferreyra24/">Quiero este plan</a>
         </article>
 
         <article class="plan">
@@ -328,8 +370,9 @@
           <div class="per">Por año</div>
           <ul>
             <li>Actualizaciones mientras lo pagues</li>
+            <li>Probalo 7 días sin cargo</li>
           </ul>
-          <a class="btn js-ig" href="#contacto">Quiero este plan</a>
+          <a class="btn js-ig" href="https://www.instagram.com/nata_ferreyra24/">Quiero este plan</a>
         </article>
 
         <article class="plan">
@@ -338,8 +381,9 @@
           <div class="per">Por mes</div>
           <ul>
             <li>Actualizaciones mientras lo pagues</li>
+            <li>Probalo 7 días sin cargo</li>
           </ul>
-          <a class="btn js-ig" href="#contacto">Quiero este plan</a>
+          <a class="btn js-ig" href="https://www.instagram.com/nata_ferreyra24/">Quiero este plan</a>
         </article>
       </div>
     </div>
@@ -356,13 +400,26 @@
         </li>
         <li>
           <h3>Te lo muestro</h3>
-          <p>Vemos el programa funcionando, con tus productos como ejemplo, y me preguntás todo lo que quieras.</p>
+          <p>Vemos el programa funcionando, con tus productos como ejemplo, y me preguntás todo lo que quieras. Te paso la propuesta con los precios de cada plan.</p>
         </li>
         <li>
-          <h3>Lo instalamos</h3>
-          <p>Si te sirve, lo dejo instalado en tu compu y arrancás a cargar.</p>
+          <h3>Lo probás 7 días</h3>
+          <p>Te lo dejo instalado en tu compu, en persona, y lo usás en tu negocio sin cargo ni compromiso. Si te sirve, elegís tu plan.</p>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <!-- Condiciones -->
+  <section class="terms">
+    <div class="wrap">
+      <h2>Lo importante, en limpio</h2>
+      <ul>
+        <li><strong>Una licencia por computadora.</strong> Queda vinculada al equipo donde se instala y no se transfiere ni se revende.</li>
+        <li><strong>Contrato por escrito.</strong> Al elegir tu plan te paso una licencia de uso con todo detallado.</li>
+        <li><strong>Tus datos son tuyos.</strong> Se guardan solo en tu computadora. No los veo, no los subo y no los comparto.</li>
+        <li><strong>Si algo falla, me escribís.</strong> Hecho en Argentina: si tenés una duda o algo no anda, lo resolvemos juntos.</li>
+      </ul>
     </div>
   </section>
 
@@ -370,9 +427,9 @@
   <section class="contact" id="contacto">
     <div class="wrap">
       <h2>¿Lo vemos juntos en 5 minutos?</h2>
-      <a class="handle js-profile" href="#contacto">@nata_ferreyra24</a>
-      <p>Entrá a mi perfil, tocá <strong>Mensaje</strong> y te muestro cómo andaría en tu negocio. Si no es para vos, también me sirve que me lo digas.</p>
-      <a class="btn js-ig" href="#contacto">
+      <a class="handle js-profile" href="https://www.instagram.com/nata_ferreyra24/">@nata_ferreyra24</a>
+      <p>Entrá a mi perfil, tocá <strong>Mensaje</strong> y te muestro cómo andaría en tu negocio y te cuento cómo probarlo 7 días sin cargo. Si no es para vos, también me sirve que me lo digas.</p>
+      <a class="btn js-ig" href="https://www.instagram.com/nata_ferreyra24/">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
         Escribime por Instagram
       </a>
