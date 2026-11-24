@@ -232,7 +232,7 @@
   <header class="top">
     <div class="wrap">
       <a class="brand" href="#"><span>Export Shop</span>Control de Stock</a>
-      <a class="btn js-ig" href="https://www.instagram.com/nata_ferreyra24/">Escribime</a>
+      <a class="btn js-ig" href="https://ig.me/m/nata_ferreyra24">Escribime</a>
     </div>
   </header>
 
@@ -243,7 +243,7 @@
         <p class="lead">Soy <span class="js-name">Nataniel</span>. Hice este programa porque cargar productos en Excel me resultaba incómodo y no encontré ninguno que me sirviera. Lo armé para que cualquier negocio chico lo use sin vueltas.</p>
         <p class="trial">🎁 Probalo <b>7 días sin cargo</b>, sin compromiso de compra.</p>
         <div class="actions">
-          <a class="btn js-ig" href="https://www.instagram.com/nata_ferreyra24/">Quiero verlo funcionando</a>
+          <a class="btn js-ig" href="https://ig.me/m/nata_ferreyra24">Quiero verlo funcionando</a>
           <a class="btn ghost" href="#planes">Ver planes</a>
         </div>
       </div>
@@ -361,7 +361,7 @@
             <li>Te lo dejo instalado y funcionando</li>
             <li>Probalo 7 días sin cargo</li>
           </ul>
-          <a class="btn pink js-ig" href="https://www.instagram.com/nata_ferreyra24/">Quiero este plan</a>
+          <a class="btn pink js-ig" href="https://ig.me/m/nata_ferreyra24">Quiero este plan</a>
         </article>
 
         <article class="plan">
@@ -372,7 +372,7 @@
             <li>Actualizaciones mientras lo pagues</li>
             <li>Probalo 7 días sin cargo</li>
           </ul>
-          <a class="btn js-ig" href="https://www.instagram.com/nata_ferreyra24/">Quiero este plan</a>
+          <a class="btn js-ig" href="https://ig.me/m/nata_ferreyra24">Quiero este plan</a>
         </article>
 
         <article class="plan">
@@ -383,7 +383,7 @@
             <li>Actualizaciones mientras lo pagues</li>
             <li>Probalo 7 días sin cargo</li>
           </ul>
-          <a class="btn js-ig" href="https://www.instagram.com/nata_ferreyra24/">Quiero este plan</a>
+          <a class="btn js-ig" href="https://ig.me/m/nata_ferreyra24">Quiero este plan</a>
         </article>
       </div>
     </div>
@@ -429,7 +429,7 @@
       <h2>¿Lo vemos juntos en 5 minutos?</h2>
       <a class="handle js-profile" href="https://www.instagram.com/nata_ferreyra24/">@nata_ferreyra24</a>
       <p>Entrá a mi perfil, tocá <strong>Mensaje</strong> y te muestro cómo andaría en tu negocio y te cuento cómo probarlo 7 días sin cargo. Si no es para vos, también me sirve que me lo digas.</p>
-      <a class="btn js-ig" href="https://www.instagram.com/nata_ferreyra24/">
+      <a class="btn js-ig" href="https://ig.me/m/nata_ferreyra24">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
         Escribime por Instagram
       </a>
@@ -468,9 +468,9 @@
     else { el.textContent = "Consultame el precio"; el.classList.add("ask"); }
   });
 
-  /* Todos los botones abren el mensaje directo de Instagram */
+  /* Los botones abren el chat directo de Instagram; el @usuario abre el perfil */
   document.querySelectorAll(".js-ig").forEach(function(a){
-    a.href = "https://www.instagram.com/" + CONFIG.instagram + "/";
+    a.href = "https://ig.me/m/" + CONFIG.instagram;
     a.target = "_blank";
     a.rel = "noopener";
   });
